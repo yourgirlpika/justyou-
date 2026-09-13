@@ -426,24 +426,20 @@ LAGU EMBEDDED TIDAK BOLEH DIBAWA SEKALI
 MELALUI CHAT TEXT.
 -->
 
-<audio
-id="music"
-controls
-loop
->
-
-<source
-src="akusayangkau.mp3"
-type="audio/mpeg"
->
-
+<audio id="music" loop controls>
+    <source src="akusayangkau.mp3" type="audio/mpeg">
 </audio>
 
-</section>
-
-
+<button onclick="playMusic()">
+    🎵 PLAY MUSIC
+</button>
 
 <script>
+function playMusic() {
+    const music = document.getElementById("music");
+    music.play();
+}
+</script>
 
 
 /* PASSWORD */
