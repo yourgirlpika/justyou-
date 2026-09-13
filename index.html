@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>untuk kamu ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+margin:0;
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#b9ecff;
+}
+
+.page{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:22px;
+opacity:0;
+pointer-events:none;
+transform:scale(.98);
+transition:.45s;
+}
+
+.page.active{
+opacity:1;
+pointer-events:auto;
+transform:scale(1);
+}
+
+.card{
+width:min(92vw,430px);
+min-height:650px;
+border:3px solid #8fdcf5;
+border-radius:32px;
+background:#f5fdff;
+box-shadow:0 15px 45px rgba(33,140,180,.22);
+padding:28px 22px;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+h1{
+margin:0 0 8px;
+font-size:28px;
+color:#238bb0;
+}
+
+.sub{
+color:#4d7180;
+font-size:16px;
+margin:0 0 20px;
+line-height:1.5;
+}
+
+.hearts{
+font-size:32px;
+letter-spacing:8px;
+margin:5px 0 18px;
+}
+
+.display{
+width:80%;
+height:55px;
+border:2px solid #a7dfee;
+border-radius:18px;
+background:white;
+color:#238bb0;
+font-size:28px;
+letter-spacing:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:20px;
+}
+
+.keypad{
+width:88%;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:12px;
+}
+
+.key{
+height:62px;
+border:2px solid #b6e5f2;
+border-radius:18px;
+background:white;
+color:#34758a;
+font-size:22px;
+box-shadow:0 3px 0 #c7edf7;
+cursor:pointer;
+}
+
+.key:active{
+transform:translateY(2px);
+box-shadow:none;
+}
+
+.key.zero{
+grid-column:2;
+}
+
+.error{
+height:20px;
+color:#e95f7c;
+font-size:14px;
+margin-top:10px;
+}
+
+.hint{
+margin-top:20px;
+color:#7596a0;
+font-size:14px;
+}
+
+.next{
+margin-top:20px;
+border:0;
+border-radius:18px;
+padding:14px 28px;
+background:#58b9da;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.percent{
+font-size:64px;
+font-weight:800;
+color:#238bb0;
+margin:10px 0;
+}
+
+.sliderWrap{
+width:90%;
+margin:18px 0 5px;
+}
+
+input[type=range]{
+width:100%;
+accent-color:#45afd3;
+}
+
+.rangeLabels{
+display:flex;
+justify-content:space-between;
+color:#6b8b95;
+font-size:13px;
+}
+
+.loveText{
+font-size:20px;
+color:#238bb0;
+margin:8px 0;
+}
+
+
+/* =========================
+   PAGE 3
+========================= */
+
+#page3{
+background:#000;
+color:#ff3030;
+overflow:hidden;
+}
+
+#loveField{
+position:absolute;
+inset:0;
+overflow:hidden;
+background:#000;
+}
+
+.love{
+position:absolute;
+top:-40px;
+color:#ff3030;
+font-family:Arial,sans-serif;
+font-size:18px;
+font-weight:400;
+white-space:nowrap;
+animation:fall linear infinite;
+opacity:.65;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-60px);
+}
+
+100%{
+transform:translateY(110vh);
+}
+
+}
+
+.centerMsg{
+position:absolute;
+z-index:5;
+left:50%;
+top:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+width:90%;
+pointer-events:none;
+}
+
+.centerMsg h2{
+margin:0;
+font-family:Arial,sans-serif;
+font-size:38px;
+font-weight:500;
+color:#ff3030;
+letter-spacing:2px;
+}
+
+.centerMsg p{
+margin-top:10px;
+color:#ff7777;
+font-size:15px;
+}
+
+.back{
+pointer-events:auto;
+margin-top:15px;
+padding:9px 20px;
+border:1px solid #ff3030;
+border-radius:15px;
+background:#080808;
+color:#ff5555;
+font-size:14px;
+cursor:pointer;
+}
+
+#music{
+position:absolute;
+z-index:10;
+bottom:15px;
+left:50%;
+transform:translateX(-50%);
+width:80%;
+opacity:.7;
+}
+
+@media(max-height:720px){
+
+.card{
+min-height:590px;
+padding:20px;
+}
+
+.key{
+height:54px;
+}
+
+.display{
+height:48px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+<div class="card">
+
+<h1>
+ayooo tebak<br>
+passwordnya! 💗
+</h1>
+
+<p class="sub">
+kalau salah , aku culik kau 😛💕<br>
+&gt
+</p>
+
+<div class="hearts">
+♡ ♡ ♡ ♡
+</div>
+
+<div class="display" id="display">
+••••
+</div>
+
+<div class="keypad">
+
+<button class="key" onclick="press(1)">1</button>
+<button class="key" onclick="press(2)">2</button>
+<button class="key" onclick="press(3)">3</button>
+
+<button class="key" onclick="press(4)">4</button>
+<button class="key" onclick="press(5)">5</button>
+<button class="key" onclick="press(6)">6</button>
+
+<button class="key" onclick="press(7)">7</button>
+<button class="key" onclick="press(8)">8</button>
+<button class="key" onclick="press(9)">9</button>
+
+<button class="key zero" onclick="press(0)">0</button>
+
+</div>
+
+<div class="error" id="error"></div>
+
+<div class="clue">
+hint : 1234 💗
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+<div class="card">
+
+<h1>
+hayo sayang sebanyak mana? 💙
+</h1>
+
+<p class="sub">
+"I choose you. 
+And I'll choose you over and over and over. 
+Without pause, without a doubt, 
+in a heartbeat. 
+I'll keep choosing you."
+
+</p>
+
+<div class="percent">
+<span id="percent">0</span>%
+</div>
+
+<div class="loveText" id="loveText">
+sedikit dulu... 👉🏻👈🏻
+</div>
+
+<div class="sliderWrap">
+
+<input
+id="slider"
+type="range"
+min="0"
+max="100"
+value="0"
+>
+
+<div class="rangeLabels">
+<span>0%</span>
+<span>100% ❤️</span>
+</div>
+
+</div>
+
+<button
+class="next"
+onclick="goPage(3)"
+>
+TERUSKAN 🫶🏻
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+<div id="loveField"></div>
+
+<div class="centerMsg">
+
+<h2>
+𝘐 𝘓𝘖𝘝𝘌 𝘠𝘖𝘜 💕
+</h2>
+
+<p>
+for you, always ❤️
+</p>
+
+<button
+class="back"
+onclick="goPage(2)"
+>
+Kembali
+</button>
+
+</div>
+
+
+<!--
+LAGU SUDAH DIGABUNG DALAM FILE ASAL.
+JIKA COPY CODE INI SAHAJA,
+LAGU EMBEDDED TIDAK BOLEH DIBAWA SEKALI
+MELALUI CHAT TEXT.
+-->
+
+<audio
+id="music"
+controls
+loop
+>
+
+<source
+src="lagu.mp3"
+type="audio/mpeg"
+>
+
+</audio>
+
+</section>
+
+
+
+<script>
+
+
+/* PASSWORD */
+
+let code="";
+
+const PASSWORD="1234";
+
+
+function press(n){
+
+if(code.length>=4)return;
+
+code+=n;
+
+document.getElementById("display").textContent=
+code.replace(/./g,"•");
+
+document.getElementById("error").textContent="";
+
+
+if(code.length===4){
+
+setTimeout(()=>{
+
+if(code===PASSWORD){
+
+goPage(2);
+
+code="";
+
+document.getElementById("display").textContent="••••";
+
+}
+
+else{
+
+document.getElementById("error").textContent=
+"salahhh 😭 cuba lagi sayang!";
+
+code="";
+
+document.getElementById("display").textContent="••••";
+
+}
+
+},250);
+
+}
+
+}
+
+
+
+/* TUKAR PAGE */
+
+function goPage(num){
+
+document
+.querySelectorAll(".page")
+.forEach(p=>p.classList.remove("active"));
+
+document
+.getElementById("page"+num)
+.classList.add("active");
+
+
+if(num===3){
+
+const music=
+document.getElementById("music");
+
+music.play().catch(()=>{});
+
+}
+
+}
+
+
+
+/* SLIDER */
+
+const slider=
+document.getElementById("slider");
+
+const percent=
+document.getElementById("percent");
+
+const loveText=
+document.getElementById("loveText");
+
+
+slider.addEventListener("input",()=>{
+
+const v=Number(slider.value);
+
+percent.textContent=v;
+
+
+if(v===0){
+
+loveText.textContent=
+"sedikit dulu... 👉🏻👈🏻";
+
+}
+
+else if(v<30){
+
+loveText.textContent=
+"sayang sikit je eh? 😭";
+
+}
+
+else if(v<60){
+
+loveText.textContent=
+"uish lumayan 🥹💙";
+
+}
+
+else if(v<90){
+
+loveText.textContent=
+"sayang banyakkk! 🥹💙";
+
+}
+
+else if(v<100){
+
+loveText.textContent=
+"hampir menang! 😭❤️";
+
+}
+
+else{
+
+loveText.textContent=
+"100% SAYANGGGG ❤️❤️❤️";
+
+}
+
+});
+
+
+
+/* LOVE BERGERAK KE BAWAH */
+
+const field=
+document.getElementById("loveField");
+
+
+for(let i=0;i<120;i++){
+
+const love=
+document.createElement("span");
+
+love.className="love";
+
+love.textContent=
+"𝘐 𝘓𝘖𝘝𝘌 𝘠𝘖𝘜 ❤️";
+
+
+love.style.left=
+Math.random()*100+"%";
+
+
+love.style.fontSize=
+14+Math.random()*8+"px";
+
+
+love.style.animationDuration=
+5+Math.random()*7+"s";
+
+
+love.style.animationDelay=
+-Math.random()*10+"s";
+
+
+love.style.opacity=
+.35+Math.random()*.4;
+
+
+field.appendChild(love);
+
+}
+
+</script>
+
+</body>
+</html>
